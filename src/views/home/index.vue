@@ -1,10 +1,34 @@
 <template>
   <div class="home">
-    home
+    {{ category }}
+    <homeHeader></homeHeader>
+    <homeSwiper></homeSwiper>
+    <homeList></homeList>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import homeHeader from "./home-header.vue";
+import homeSwiper from "./home-swiper.vue";
+import homeList from "./home-list.vue";
+import { useStore } from "vuex";
+import { IGlobalState } from "@/store";
 
-export default defineComponent({});
+export default defineComponent({
+  components: {
+    homeHeader,
+    homeSwiper,
+    homeList,
+  },
+
+  setup() {
+    let store = useStore<IGlobalState>();
+    let category = computed(() => {
+      return store.state.home.currentCategory;
+    });
+    return {
+      category,
+    };
+  },
+});
 </script>
