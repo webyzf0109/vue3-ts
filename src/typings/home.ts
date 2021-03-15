@@ -6,7 +6,7 @@ export enum CATEGORY_TYPES {
 }
 
 
-interface ISlider {
+export interface ISlider {
     url: string
 }
 
@@ -26,8 +26,14 @@ interface ILessons {
     list: ILesson[];
 }
 
+export interface Icaptcha{
+    token:string,
+    base64:string
+}
+
 export interface IHomeState {
     currentCategory: CATEGORY_TYPES;
     sliders: ISlider[];
     lessons: ILessons;
+    base64Data:Icaptcha
 }
